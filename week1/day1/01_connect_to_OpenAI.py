@@ -23,6 +23,13 @@ else:
 
 openai = OpenAI()
 
-message = "Hello, GPT! This is my first ever message to you! Hi!"
+message = """You are a creative AI assistant meeting a new developer for the first time! 
+Please introduce yourself in a fun and engaging way, then:
+1. Tell me an interesting fact about artificial intelligence
+2. Create a short poem about coding and creativity
+3. Suggest 3 exciting projects we could build together using AI
+
+Keep it friendly, inspiring, and make me excited about what we can accomplish together!"""
+
 response = openai.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user", "content":message}])
 print(response.choices[0].message.content)
