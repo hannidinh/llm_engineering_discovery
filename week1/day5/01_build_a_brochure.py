@@ -145,6 +145,11 @@ system_prompt = "You are an assistant that analyzes the contents of several rele
 and creates a short humorous, entertaining, jokey brochure about the company for prospective customers, investors and recruits. Respond in markdown.\
 Include details of company culture, customers and careers/jobs if you have the information."
 
+# Vietnamese version of the system prompt
+system_prompt_vietnamese = "Bạn là một trợ lý phân tích nội dung của nhiều trang web liên quan từ website của một công ty \
+và tạo ra một brochure ngắn gọn, hài hước, giải trí về công ty dành cho khách hàng tiềm năng, nhà đầu tư và ứng viên tuyển dụng. Trả lời bằng markdown và tiếng Việt.\
+Bao gồm chi tiết về văn hóa công ty, khách hàng và cơ hội nghề nghiệp/việc làm nếu bạn có thông tin đó."
+
 def get_brochure_user_prompt(company_name, url):
     user_prompt = f"You are looking at a company called: {company_name}\n"
     user_prompt += f"Here are the contents of its landing page and other relevant pages; use this information to build a short brochure of the company in markdown.\n"
@@ -167,6 +172,18 @@ def create_brochure(company_name, url):
     return result
 
 # create_brochure("PayloadCMS", PAYLOAD_CMS)
+
+def create_brochure_vietnamese(company_name, url):
+    response = openai.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt_vietnamese},
+            {"role": "user", "content": get_brochure_user_prompt(company_name, url)}
+        ],
+    )
+    result = response.choices[0].message.content
+    print(result)
+    return result
 
 # Finally: a minor improvement - results stream back from OpenAI, with the familiar typewriter animation
 def stream_brochure(company_name, url):
@@ -197,4 +214,38 @@ def stream_brochure(company_name, url):
                 time.sleep(0.01)  # Small delay for typewriter effect
         print("\n")  # Final newline
 
+def stream_brochure_vietnamese(company_name, url):
+    stream = openai.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt_vietnamese},
+            {"role": "user", "content": get_brochure_user_prompt(company_name, url)}
+        ],
+        stream=True
+    )
+    response = ""
+    
+    if HAS_IPYTHON:
+        # Use IPython display for Jupyter notebooks
+        display_handle = display(Markdown(""), display_id=True)
+        for chunk in stream:
+            response += chunk.choices[0].delta.content or ''
+            response_clean = response.replace("```", "").replace("markdown", "")
+            update_display(Markdown(response_clean), display_id=display_handle.display_id)
+    else:
+        # Use terminal-friendly streaming for regular Python
+        print("Generating Vietnamese brochure...\n")
+        for chunk in stream:
+            if chunk.choices[0].delta.content:
+                content = chunk.choices[0].delta.content
+                print(content, end='', flush=True)
+                time.sleep(0.01)  # Small delay for typewriter effect
+        print("\n")  # Final newline
+
 stream_brochure("PayloadCMS", PAYLOAD_CMS)
+
+# Generate Vietnamese brochure
+print("\n" + "="*50)
+print("VIETNAMESE BROCHURE / BROCHURE TIẾNG VIỆT")
+print("="*50 + "\n")
+stream_brochure_vietnamese("PayloadCMS", PAYLOAD_CMS)
