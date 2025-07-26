@@ -33,6 +33,23 @@ else:
 openai = OpenAI()
 MODEL = 'gpt-4o-mini'
 
+print("=" * 80)
+print("SPORTS BETTING CHATBOT DEMONSTRATION")
+print("=" * 80)
+print("This script demonstrates the evolution of a responsible sports betting assistant")
+print("through four progressive versions, each building upon the previous with enhanced")
+print("safety features and specialized knowledge.")
+print()
+print("Each chatbot will launch in sequence, allowing you to compare their capabilities:")
+print("1. Basic Sports Betting Assistant - Foundation with general betting education")
+print("2. NFL Betting Specialist - Specialized knowledge for NFL betting")
+print("3. Enhanced Safety Features - Advanced harm prevention protocols")
+print("4. Dynamic Context - Intelligent adaptation based on conversation topics")
+print()
+print("All versions prioritize responsible gambling and user safety.")
+print("=" * 80)
+print()
+
 # Basic sports betting assistant
 system_message = """You are a knowledgeable sports betting assistant. You help users understand:
 - Different types of bets (moneyline, point spread, over/under, props, etc.)
@@ -65,7 +82,33 @@ def chat(message, history):
         yield response
 
 print("=== Basic Sports Betting Assistant ===")
-gr.ChatInterface(fn=chat, type="messages").launch(share=True)
+print("Purpose: A foundational sports betting assistant that provides general information about:")
+print("- Different types of bets (moneyline, spread, over/under, props)")
+print("- How odds work and their meanings")
+print("- Basic betting strategies and bankroll management")
+print("- Responsible gambling reminders in every interaction")
+print("This version focuses on education and harm prevention.\n")
+
+basic_description = """
+## 🎯 Basic Sports Betting Assistant
+
+**Purpose:** A foundational sports betting assistant focused on education and responsible gambling.
+
+**Features:**
+- 📊 Different types of bets (moneyline, spread, over/under, props)
+- 💰 How odds work and their meanings  
+- 📈 Basic betting strategies and bankroll management
+- 🛡️ Responsible gambling reminders in every interaction
+
+⚠️ **Always gamble responsibly. Only bet what you can afford to lose.**
+"""
+
+gr.ChatInterface(
+    fn=chat, 
+    type="messages",
+    title="Basic Sports Betting Assistant",
+    description=basic_description
+).launch(share=True)
 
 # Enhanced system message for NFL betting specialist
 system_message = """You are an NFL betting specialist assistant. You help users understand NFL betting including:
@@ -98,7 +141,38 @@ def chat(message, history):
         yield response
 
 print("\n=== NFL Betting Specialist ===")
-gr.ChatInterface(fn=chat, type="messages").launch(share=True)
+print("Purpose: A specialized NFL betting assistant focused specifically on:")
+print("- NFL point spreads and game analysis")
+print("- Over/under totals for NFL games")
+print("- Player prop bets and statistics")
+print("- Team trends, injury reports, and weather impacts")
+print("- Enhanced responsible gambling protocols")
+print("This version provides deeper NFL-specific knowledge while maintaining safety focus.\n")
+
+nfl_description = """
+## 🏈 NFL Betting Specialist
+
+**Purpose:** A specialized NFL betting assistant with deep knowledge of professional football betting.
+
+**Features:**
+- 📊 NFL point spreads and comprehensive game analysis
+- 🎯 Over/under totals for NFL games with trend analysis
+- 👤 Player prop bets and detailed statistics
+- 📈 Team trends, injury reports, and weather impact analysis
+- 🛡️ Enhanced responsible gambling protocols
+- 🧠 Deep NFL-specific knowledge and insights
+
+**Focus:** Professional football betting with enhanced safety measures.
+
+⚠️ **Bet responsibly. Never bet more than 1-5% of your bankroll on a single game.**
+"""
+
+gr.ChatInterface(
+    fn=chat, 
+    type="messages",
+    title="NFL Betting Specialist",
+    description=nfl_description
+).launch(share=True)
 
 # Add responsible gambling warnings for high-risk queries
 system_message += """\n\nSPECIAL PROTOCOLS:
@@ -128,7 +202,43 @@ def chat(message, history):
         yield response
 
 print("\n=== NFL Betting Specialist with Enhanced Safety Features ===")
-gr.ChatInterface(fn=chat, type="messages").launch(share=True)
+print("Purpose: NFL betting assistant with advanced harm prevention features:")
+print("- All NFL betting knowledge from previous version")
+print("- Automatic detection of high-risk gambling language")
+print("- Immediate intervention for problematic betting patterns")
+print("- Dynamic safety messaging based on user input")
+print("- Gambling addiction resources and helpline numbers")
+print("This version actively monitors conversations for signs of gambling problems.\n")
+
+enhanced_safety_description = """
+## 🛡️ NFL Betting Specialist with Enhanced Safety Features
+
+**Purpose:** NFL betting assistant with advanced harm prevention and user protection.
+
+**Core Features:**
+- 🏈 All NFL betting knowledge from specialist version
+- 🔍 **Automatic detection** of high-risk gambling language
+- 🚨 **Immediate intervention** for problematic betting patterns  
+- 💬 **Dynamic safety messaging** based on user input
+- 📞 **Gambling addiction resources** and helpline numbers
+- 🤖 **Active monitoring** for signs of gambling problems
+
+**Safety Protocols:**
+- Detects keywords like "life savings", "guaranteed wins", "chase losses"
+- Provides immediate support resources when needed
+- Prioritizes harm reduction over betting advice
+
+📞 **Need Help?** National Problem Gambling Helpline: **1-800-522-4700**
+
+⚠️ **This version actively protects users from harmful gambling behaviors.**
+"""
+
+gr.ChatInterface(
+    fn=chat, 
+    type="messages",
+    title="NFL Betting Specialist - Enhanced Safety",
+    description=enhanced_safety_description
+).launch(share=True)
 
 # Final version with dynamic context based on betting type mentioned
 def chat(message, history):
@@ -162,4 +272,44 @@ def chat(message, history):
         yield response
 
 print("\n=== Advanced Sports Betting Assistant with Dynamic Context ===")
-gr.ChatInterface(fn=chat, type="messages").launch(share=True) 
+print("Purpose: The most sophisticated version with intelligent context adaptation:")
+print("- All safety features from previous versions")
+print("- Dynamic system messages based on betting type mentioned")
+print("- Specialized warnings for parlays, prop bets, and live betting")
+print("- Context-aware responses that adapt to conversation topics")
+print("- Advanced risk detection with immediate intervention protocols")
+print("- Comprehensive responsible gambling resource integration")
+print("This version represents the full implementation with all safety and contextual features.\n")
+
+advanced_description = """
+## 🚀 Advanced Sports Betting Assistant with Dynamic Context
+
+**Purpose:** The most sophisticated version with intelligent context adaptation and comprehensive safety.
+
+**Advanced Features:**
+- 🛡️ **All safety features** from previous versions
+- 🧠 **Dynamic system messages** based on betting type mentioned
+- ⚠️ **Specialized warnings** for parlays, prop bets, and live betting
+- 💭 **Context-aware responses** that adapt to conversation topics
+- 🔍 **Advanced risk detection** with immediate intervention protocols
+- 📚 **Comprehensive responsible gambling** resource integration
+
+**Intelligent Adaptations:**
+- 🎲 **Parlay mentions** → High-risk, low-probability warnings
+- 👤 **Prop bet discussions** → Higher bookmaker edge explanations  
+- ⚡ **Live betting queries** → Fast-paced decision warnings
+- 🚨 **Risk language detection** → Immediate crisis intervention
+
+**This is the complete implementation with all safety and contextual intelligence features.**
+
+📞 **Crisis Support:** Call **1-800-522-4700** or text **GAMB to 233733**
+
+⚠️ **Maximum protection with intelligent, context-aware assistance.**
+"""
+
+gr.ChatInterface(
+    fn=chat, 
+    type="messages",
+    title="Advanced Sports Betting Assistant - Dynamic Context",
+    description=advanced_description
+).launch(share=True) 
