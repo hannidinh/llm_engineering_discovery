@@ -1,43 +1,59 @@
+# Environment and Development
 python-dotenv
 jupyterlab
 ipywidgets
-requests
+jupyter-dash
+setuptools
+
+# Core Data Science and ML
 numpy
 pandas
 scipy
 scikit-learn
-matplotlib
-gensim
 torch
 transformers
-tqdm
-openai
+datasets
+accelerate
+bitsandbytes
+sentence_transformers
+gensim
+sentencepiece
+
+# Visualization
+matplotlib
+plotly
+
+# Web and API
+requests
 gradio
+beautifulsoup4
+feedparser
+speedtest-cli
+
+# AI and Language Models
+openai
+anthropic
+google-generativeai
 langchain
-tiktoken
 langchain-openai
 langchain_experimental
 langchain_chroma
 langchain[docarray]
-datasets
-sentencepiece
-matplotlib
-google-generativeai
-anthropic
-scikit-learn
-unstructured
-chromadb
-plotly
-jupyter-dash
-beautifulsoup4
-pydub
-modal
+tiktoken
 ollama
-accelerate
-sentencepiece
-bitsandbytes
+
+# Vector Database and Search
+chromadb
+unstructured
+
+# Audio Processing (for TTS)
+pydub
+soundfile
+
+# Utilities
+tqdm
 psutil
-setuptools
-speedtest-cli
-sentence_transformers
-feedparser
+modal
+
+# Development Tools
+ipython
