@@ -48,6 +48,7 @@ unstructured
 
 # Audio Processing (for TTS)
 pydub
+pyttsx3
 soundfile
 
 # Utilities
