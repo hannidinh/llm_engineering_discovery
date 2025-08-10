@@ -51,6 +51,9 @@ pydub
 pyttsx3
 soundfile
 
+# Image Processing (for fashion visualizations)
+Pillow
+
 # Utilities
 tqdm
 psutil
