@@ -76,4 +76,7 @@ pids
 *.tgz
 
 # Yarn Integrity file
-.yarn-integrity 
+.yarn-integrity
+
+# Dating app project (contains sensitive data)
+dating_app/ 
